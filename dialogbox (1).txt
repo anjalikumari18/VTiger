@@ -1,0 +1,69 @@
+If account industry is 'Financial', Once user enters phone number on account phone number field should be locked. 
+If user wants to change phone number, user should enter the new phone number in 'Update Phone Number'(New Field) and click on 'Update Number Button',
+On click of 'Update Number Button' a confirmation dialog should be shown 'Do you want to update the phone number for Account Name?',
+If clicked on Yes phone number should be updated and set the 'Update Phone Number' field blank.
+If clicked on No set the 'Update Phone Number' field blank.
+
+
+
+//dialogbox
+
+function alertConfirm()
+        {
+
+            debugger;
+           //var formContext = primaryControl;
+            var confirmStrings = { text:"Do you want to update phone number?.", title:"Confirmation Dialog" };
+            var confirmOptions = { height: 200, width: 450 };
+            Xrm.Navigation.openConfirmDialog(confirmStrings, confirmOptions).then(
+            function (success) 
+            {    
+                if (success.confirmed)
+                { 
+          
+                    console.log("Dialog closed using Yes button.");
+
+                }
+                else
+                    console.log("closed using No button or X.");
+
+
+
+//update phone no.
+
+
+function Confirms(executionContext)
+{
+var formContext = executionContext.getFormContext();
+var mobileno = formContext.getAttribute("new_updatephonenumber").getValue();
+
+ 
+
+//var Confmobileno = formContext.getAttribute("new_confirmphoneno").getValue();
+formContext.getAttribute("telephone1").setValue(mobileno);
+
+ 
+
+}
+
+
+//lock field once entered phone no. 
+
+
+function getTextField(e){
+
+    // Get the Form Context
+    var formContext = e.getFormContext();
+
+    // Get the value of a Contact's first name 
+    var mobileno = formContext.getAttribute("telephone1").getValue();
+    if(mobileno !==null)
+   {
+    formContext.getControl("telephone1").setDisabled(true);
+}
+}
+});
+
+
+
+
