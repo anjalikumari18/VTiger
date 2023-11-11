@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style type="text/css">
+     h2{
+            text-align: center;
+            font-size: 36px;
+            margin-top: 200px;
+
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2><span id="hr">01</span>:<span id="min">01</span>:<span id="sec">01</span></h2>
+    </div>
+    <script>
+        let hour=document.getElementById("hr");
+        let min=document.getElementById("mn");
+        let sec=document.getElementById("sec");
+
+        function updateTime()
+		{
+			let tm=new Date();
+			let hr=tm.getHours();
+			let mn=tm.getMinutes();
+			let sc=tm.getSeconds();
+            
+			hour.innerHTML=hr-12;
+			min.innerHTML=mn;
+			sec.innerHTML=sc;
+        }
+        setInterval(updateTime,1000);
+
+    </script>
+    
+</body>
+</html>
